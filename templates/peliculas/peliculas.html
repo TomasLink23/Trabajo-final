@@ -1,0 +1,52 @@
+{% extends "padre.html" %}
+{% load static %}
+{% block contenidoQueCambia %}
+<section class="bg-dark text-light p-5">
+    <div class="container">
+        <h1>Peliculas</h1>
+        <a href="/AppNQV/peliculas-formulario" button type="button" class="btn btn-outline-danger"
+        style="--bs-btn-padding-y: .35rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .85em;">
+        Agregar Peliculas
+        </a>
+        <p></p>
+                {% if messages %}
+                <div class="alert alert-success" role="alert"><h5>
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                    </h5></ul></div>
+                {% endif %}
+                <h4></h4>
+                <p></p>
+            {% for pelicula in object_list %}
+            <div class="card bg-secondary mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        {% if pelicula.imagen_peliculas %}
+                        <a href="/AppNQV/peliculas-detalle/{{pelicula.id}}/">
+                        <img src="{{pelicula.imagen_peliculas.url}}" class="img-fluid rounded-start" alt="...">
+                        </a>
+                        {%else%}
+                        <a href="/AppNQV/peliculas-detalle/{{pelicula.id}}/">
+                        <img src="media/cinema-vector.jpg" class="img-fluid rounded-start" alt="...">
+                        </a>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{pelicula.nombre}}</h5>
+                                <li class="list-group-item list-group-item">Duración: {{pelicula.duracion}} minutos</li>
+                                <li class="list-group-item list-group-item">Clasificación: {{pelicula.clasificacion}}</li>
+                                <li class="list-group-item list-group-item">Fecha de Estreno: {{pelicula.fecha_De_Estreno}}</li>
+                                {% if pelicula.linkTrailer %}
+                                <li class="mb-2"><a class= 'link-light'  href="{{pelicula.linkTrailer}}" target="_blank"
+                                    rel="noopener">Ver Trailer</a></li>
+                                {% endif %}
+                        </div>
+                        </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

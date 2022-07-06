@@ -1,0 +1,37 @@
+{% extends "padre.html" %}
+{% load static %}
+{% block contenidoQueCambia %}
+<section class="bg-dark text-light p-5">
+    <div class="container">
+        <div>
+            <h1>Registro</h1>
+        </div>
+    </div>
+</section>
+<div class="card text-center">
+    <div class="card-header">
+        <h2>Complete los datos para crear un usuario</h2>
+    </div>
+
+        {% if errors %}
+            <div class="alert alert-danger" role="alert">
+                {{errors}}
+            </div>
+        {% endif %}
+        {% load crispy_forms_tags %}
+        <div class="card-body">
+            <form action ='' method = 'POST'>
+                {% csrf_token%}
+                <table class="table table-sm">
+                        {{form|crispy}}                    
+                </table>
+                    <input type="submit",value='Ingresar'>
+            </form>
+        </div>
+        <p></p>
+</div>
+
+<div class="card-footer text-muted">
+    <p></p>
+</div>
+{% endblock %}

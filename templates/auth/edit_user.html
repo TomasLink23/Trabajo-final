@@ -1,0 +1,44 @@
+{% extends 'padre.html' %}
+
+{% block titulo %}
+Actualizar Peliculas
+{% endblock %}
+
+{% block contenidoQueCambia %}
+<section class="bg-dark text-light p-5">
+    <div class="container">
+                        <h1>Perfil de Usuario</h1>
+            </div>
+</section>
+<div class="container">
+    <div class="card text-center">
+        <h2>Usuario: {{user.username | capfirst}}</h2>
+
+
+        <div class="input-group mb-3">
+                <ul class="list-group">
+                    {% if form %}
+                    {% load crispy_forms_tags %}
+                    <form action="" method="POST">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <input type="submit" , value="Enviar">
+                    </form>
+                    {% endif %}
+                    <li class="list-group-item list-group-item-secondary"><a href="/usuarios/password" class="btn btn-danger">Cambiar contraseña</a></li>
+                </ul>
+        </div>
+            
+            
+    </div>
+</div>
+<p></p>
+<div class="card text-center">
+    <p></p>
+    <p></p>
+</div>
+</div>
+</section>
+
+
+{% endblock %}

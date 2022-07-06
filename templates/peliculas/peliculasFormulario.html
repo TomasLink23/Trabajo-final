@@ -1,0 +1,25 @@
+{% extends "padre.html" %}
+{% load static %}
+{% block contenidoQueCambia %}
+<section class="bg-dark text-light p-5">
+    <div class="container">
+        <div>
+            <div>
+                <h1>Formulario - Agregar una Pelicula</h1>
+                {{message4}}
+                <h4></h4>
+            </div>
+            <form action="" method="POST" enctype="'multipart/form-data">{% csrf_token %}
+                <table>
+                    {{ form.as_table }}
+                </table>
+                <input type="submit", value="Enviar">
+            </form>
+            {% if miFormularioPeliculas.errors %}
+            <div class="alert alert-danger" role="alert">Estan mal los datos, revisar</div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

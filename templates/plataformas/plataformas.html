@@ -1,0 +1,47 @@
+{% extends "padre.html" %}
+{% load static %}
+{% block contenidoQueCambia %}
+<section class="bg-dark text-light p-5">
+    <div class="container">
+        <h1>Plataformas</h1>
+        <a href="/AppNQV/plataformas-formulario" button type="button" class="btn btn-outline-danger"
+        style="--bs-btn-padding-y: .35rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .85em;">
+        Agregar Plataformas
+        </a>
+        <p></p>
+        {% if messages %}
+        <div class="alert alert-success" role="alert"><h5>
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+            </h5></ul></div>
+        {% endif %}
+            {% for plataforma in object_list %}
+        <div class="card bg-secondary mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    {% if plataforma.imagen_plataformas %}
+                    <a href="/AppNQV/plataformas-detalle/{{plataforma.id}}/">
+                    <img src="{{plataforma.imagen_plataformas.url}}" class="img-fluid rounded-start" alt="...">
+                    </a>
+                    {%else%}
+                    <a href="/AppNQV/plataformas-detalle/{{plataforma.id}}/">
+                    <img src="media/cinema-vector.jpg" class="img-fluid rounded-start" alt="...">
+                    </a>
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{plataforma.nombre}}</h5>
+                        <p class="card-text"></p>
+                        <p class="card-text"><small class="text-muted"></small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+            {% endfor %}
+        </div>
+        
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "padre.html" %}
+{% load static %}
+{% block contenidoQueCambia %}
+<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" >
+    <div class="carousel-inner bg-dark">
+        
+            <div class="carousel-item active opacity-25">
+                <img src="https://static.hbo.com/2022-05/fantastic-beasts-secrets-of-dumbledore-ka-1920_0.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item opacity-25">
+                <img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/new-years-movies-index-1640368473.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item opacity-25">
+                <img src="https://cdn.vox-cdn.com/thumbor/mqaAql6eWvdgUK14SQu2CLTIV78=/0x0:2300x1499/920x613/filters:focal(966x566:1334x934):format(webp)/cdn.vox-cdn.com/uploads/chorus_image/image/57988089/Movies_end_of_year_2017.0.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="card-img-overlay">
+                <section class="bg-outline text-light p-5 text-center">
+                    <div class="container bg-dark p-2" style="--bs-bg-opacity: .8;">
+                        <h1 class="display-1">NADA QUE VER</h1>
+                        <h1></h1>
+                        <h1 class="display-6">Recomendaciones de Streaming</h1>
+                            <div class="h4 pb-2 mb-4 text-danger">
+                                <a href="/AppNQV/resultado">
+                                    <button type="button" class="btn btn-outline-danger">Dame otra!</button>
+                                </a>
+                                <p></p>
+{% for resultado_pelicula in resultado_pelicula %}
+<div class="card mb-3 container bg-dark text-light" style="max-width: 700px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            {% if resultado_pelicula.imagen_peliculas %}
+            <a href="/AppNQV/peliculas-detalle/{{resultado_pelicula.id}}/">
+                <img src="{{resultado_pelicula.imagen_peliculas.url}}" class="img-fluid rounded-start" alt="...">
+            </a>
+            {%else%}
+            <a href="/AppNQV/peliculas-detalle/{{resultado_pelicula.id}}/">
+                <img src="media/cinema-vector.jpg" class="img-fluid rounded-start" alt="...">
+            </a>
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h3 class="card-title">{{resultado_pelicula.nombre}}</h3>
+                    <li class="list-group-item list-group-item">Duración: {{resultado_pelicula.duracion}} minutos</li>
+                    <li class="list-group-item list-group-item">Clasificación: {{resultado_pelicula.clasificacion}}</li>
+                    <li class="list-group-item list-group-item">Fecha de Estreno: {{resultado_pelicula.fecha_De_Estreno}}</li>
+                    <li class="list-group-item list-group-item">Rating IMdB: {{resultado_pelicula.ratingIMDB}} </li>
+                    <li class="mb-2"><a class= 'link-light'  href="{{resultado_pelicula.linkTrailer}}" target="_blank"
+                        rel="noopener">Ver Trailer</a></li>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                            </div>
+                </section>
+            </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
